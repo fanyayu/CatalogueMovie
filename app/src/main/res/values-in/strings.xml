@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyCatalogueMovie</string>
+    <string name="Search">Cari</string>
+    <string name="read_more">Baca lebih banyak</string>
+    <string name="date_released">Tanggal Rilis</string>
+    <string name="colon">:</string>
+    <string name="language">Bahasa</string>
+    <string name="popularity">Popularitas</string>
+    <string name="overview">Ikhtisar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="now_playing">Sedang Tayang</string>
+    <string name="coming_soon">Segera</string>
+    <string name="detail">Detil</string>
+    <string name="share">Bagikan</string>
+    <string name="detail_movie">Detil Film</string>
+    <string name="home">Beranda</string>
+    <string name="search_movie">Cari Film</string>
+    <string name="fav_success">One movie added to favorite</string>
+    <string name="fav_movie">Favorite Movie</string>
+    <string name="no_data">There is no data now</string>
+</resources>

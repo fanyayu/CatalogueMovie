@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_detail"
+    tools:context=".MovieDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_det_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/img_det_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date_released"/>
+            <TextView
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colon"/>
+            <TextView
+                android:id="@+id/tv_det_date"
+                android:layout_weight="0.9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/language"/>
+            <TextView
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colon"/>
+            <TextView
+                android:id="@+id/tv_det_language"
+                android:layout_weight="0.9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/popularity"/>
+            <TextView
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colon"/>
+            <TextView
+                android:id="@+id/tv_det_popularity"
+                android:layout_weight="0.9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/overview"/>
+            <TextView
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colon"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_det_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_favorite_white_24dp"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    xmlns:cv_movie_search="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_movie_search"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    cv_movie_search:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        
+        <ImageView
+            android:id="@+id/img_item_moviesearch"
+            android:layout_width="140dp"
+            android:layout_height="170dp"
+            android:scaleType="centerCrop"
+            tools:src="@color/colorAccent"/>
+        <TextView
+            android:layout_toRightOf="@id/img_item_moviesearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_movie_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Avengers"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_toRightOf="@id/img_item_moviesearch"
+            android:layout_below="@id/tv_movie_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_movie_desc"
+            android:textSize="12sp"
+            android:maxLines="3"
+            tools:text="Avengers"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_toRightOf="@id/img_item_moviesearch"
+            android:layout_below="@id/tv_movie_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_movie_date"
+            android:textSize="14sp"
+            android:maxLines="3"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <Button
+            android:id="@+id/btn_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_movie_date"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@id/img_item_moviesearch"
+            android:text="@string/detail"
+            style="@style/AppTheme.Button"/>
+        
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
