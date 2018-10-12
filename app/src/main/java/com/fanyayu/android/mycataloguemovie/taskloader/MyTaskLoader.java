@@ -1,8 +1,9 @@
-package com.fanyayu.android.mycataloguemovie;
+package com.fanyayu.android.mycataloguemovie.taskloader;
 
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
 
+import com.fanyayu.android.mycataloguemovie.BuildConfig;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;

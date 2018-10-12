@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
+import com.fanyayu.android.mycataloguemovie.taskloader.MyTaskLoader;
 
 import java.util.ArrayList;
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
+import com.fanyayu.android.mycataloguemovie.taskloader.MovieTaskLoader;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.fanyayu.android.mycataloguemovie;
+package com.fanyayu.android.mycataloguemovie.taskloader;
 
 import android.os.Build;
 import android.support.v4.content.AsyncTaskLoader;
