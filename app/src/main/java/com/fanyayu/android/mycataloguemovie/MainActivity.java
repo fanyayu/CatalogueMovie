@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_layout, currentFragment)
+                    .addToBackStack(null)
                     .commit();
 
             getSupportActionBar().setTitle(getString(R.string.home));
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings){
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            Intent mIntent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(mIntent);
         }
         return super.onOptionsItemSelected(item);

@@ -1,7 +1,8 @@
-package com.fanyayu.android.mycataloguemovie;
+package com.fanyayu.android.mycataloguemovie.reminder;
 
 import android.content.Context;
 
+import com.fanyayu.android.mycataloguemovie.reminder.SchedulerService;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
@@ -16,7 +17,7 @@ public class SchedulerTask {
     public void createPeriodicTask(){
         Task periodicTask = new PeriodicTask.Builder()
                 .setService(SchedulerService.class)
-                .setPeriod(60)
+                .setPeriod(3 * 60 * 1000)
                 .setFlex(10)
                 .setTag(SchedulerService.TAG_TASK_RELEASEMOV_LOG)
                 .setPersisted(true)

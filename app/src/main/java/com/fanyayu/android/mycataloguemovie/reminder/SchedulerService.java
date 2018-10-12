@@ -1,4 +1,4 @@
-package com.fanyayu.android.mycataloguemovie;
+package com.fanyayu.android.mycataloguemovie.reminder;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,8 +8,14 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Movie;
 import android.os.Build;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AppCompatActivity;
 
+import com.fanyayu.android.mycataloguemovie.BuildConfig;
+import com.fanyayu.android.mycataloguemovie.MainActivity;
+import com.fanyayu.android.mycataloguemovie.MovieDetailFragment;
+import com.fanyayu.android.mycataloguemovie.R;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
 import com.fanyayu.android.mycataloguemovie.taskloader.MovieTaskLoader;
 import com.google.android.gms.gcm.GcmNetworkManager;
@@ -61,7 +67,7 @@ public class SchedulerService extends GcmTaskService {
         String popularity = item.getMoviePopularity();
         String language = item.getMovieLanguage();
 
-        Intent intent = new Intent(applicationContext, MovieDetailFragment.class);
+        Intent intent = new Intent(applicationContext, MainActivity.class);
         intent.putExtra(MovieDetailFragment.EXTRA_NAME, title);
         intent.putExtra(MovieDetailFragment.EXTRA_DATE, date);
         intent.putExtra(MovieDetailFragment.EXTRA_DESC, overview);

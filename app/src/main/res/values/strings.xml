@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyCatalogueMovie</string>
     <string name="Search">Search</string>
+    <string name="setting">Setting</string>
     <string name="read_more">Read more</string>
     <string name="date_released">Date Released</string>
     <string name="colon">:</string>
@@ -30,8 +31,13 @@
     <string name="setting_lang">Languages</string>
     <string name="change_lang">Change your phone languages</string>
     <string name="activate_daily_reminder">Activate daily reminder</string>
+    <string name="daily_activated">Daily reminder activated</string>
+    <string name="daily_activated_cancel">Daily reminder is not activated</string>
+    <string name="release_activated">Release today reminder activated</string>
+    <string name="release_activated_cancel">Release today reminder is not activated</string>
     <string name="activate_release_reminder">Activate release today reminder</string>
     <string name="remindertext">get released today!!! Click to see details</string>
-    <string name="see_detail"></string>
+    <string name="daily_reminder">Watch movie now!!</string>
+    <string name="daily_text">Dont forget to check new movie today</string>
 
 </resources>
