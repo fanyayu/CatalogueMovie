@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Binder;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.fanyayu.android.mycataloguemovie.R;
 import com.fanyayu.android.mycataloguemovie.entity.FavoriteItems;
@@ -37,7 +40,10 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
+        final long identityToken = Binder.clearCallingIdentity();
+        mContext.getContentResolver().query(CONTENT_URI, null, null, null, null);
 
+        Binder.restoreCallingIdentity(identityToken);
     }
 
     @Override
@@ -60,6 +66,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
             bitmap = Glide.with(mContext)
                     .asBitmap()
                     .load("http://image.tmdb.org/t/p/w185"+item.getPosterpath())
+                    .apply(new RequestOptions().centerCrop())
                     .into(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL).get();
         } catch (InterruptedException e){
             e.printStackTrace();

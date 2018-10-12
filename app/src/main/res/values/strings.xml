@@ -25,4 +25,13 @@
     <string name="no_data">There is no data now</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="setting_daily_reminder">Daily Reminder</string>
+    <string name="setting_release_reminder">Release Today Reminder</string>
+    <string name="setting_lang">Languages</string>
+    <string name="change_lang">Change your phone languages</string>
+    <string name="activate_daily_reminder">Activate daily reminder</string>
+    <string name="activate_release_reminder">Activate release today reminder</string>
+    <string name="remindertext">get released today!!! Click to see details</string>
+    <string name="see_detail"></string>
+
 </resources>
