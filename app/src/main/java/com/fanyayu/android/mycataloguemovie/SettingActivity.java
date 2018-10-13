@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.fanyayu.android.mycataloguemovie.reminder.DailyReminder;
-import com.fanyayu.android.mycataloguemovie.reminder.SchedulerTask;
+import com.fanyayu.android.mycataloguemovie.reminder.ReleaseReminder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,8 +21,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.change_language)
     LinearLayout changeLang;
 
-    private SchedulerTask mSchedulerTask;
     private DailyReminder mDailyReminder;
+    private ReleaseReminder mReleaseReminder;
     private AppPreference appPref;
     private boolean isDaily, isRelease;
 
@@ -38,7 +37,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         changeLang.setOnClickListener(this);
 
         appPref = new AppPreference(this);
-        mDailyReminder = new DailyReminder(this);
+        mDailyReminder = new DailyReminder();
+        mReleaseReminder = new ReleaseReminder();
         getSupportActionBar().setTitle(R.string.setting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
@@ -68,29 +68,27 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 if (isDaily){
                     switchDaily.setEnabled(true);
                     appPref.setDaily(isDaily);
-                    mDailyReminder.setRepeatingAlarm(this, DailyReminder.TYPE_REPEATING, "07:15");
-                    Toast.makeText(this, R.string.daily_activated, Toast.LENGTH_SHORT).show();
+                    mDailyReminder.setRepeatingAlarm(this, DailyReminder.TYPE_REPEATING, "11:00");
+
                 } else {
                     switchDaily.setChecked(false);
                     appPref.setDaily(isDaily);
-                    mDailyReminder.cancelAlarm(this, DailyReminder.TYPE_REPEATING);
-                    Toast.makeText(this, R.string.daily_activated_cancel, Toast.LENGTH_SHORT).show();
+                    mDailyReminder.cancelAlarm(this);
+
                 }
                 break;
             case R.id.switch_release:
                 isRelease = switchRelease.isChecked();
-                mSchedulerTask = new SchedulerTask(this);
                 if (isRelease){
                     switchRelease.setEnabled(true);
                     appPref.setRelease(isRelease);
+                    mReleaseReminder.setReleaseAlarm(this, ReleaseReminder.TYPE_REPEATING, "11:30");
 
-                    mSchedulerTask.createPeriodicTask();
-                    Toast.makeText(this, R.string.release_activated, Toast.LENGTH_SHORT).show();
                 } else {
                     switchRelease.setChecked(false);
                     appPref.setRelease(isRelease);
-                    mSchedulerTask.cancelPeriodicTask();
-                    Toast.makeText(this, R.string.release_activated_cancel, Toast.LENGTH_SHORT).show();
+                    mReleaseReminder.cancelAlarmRelease(this);
+
                 }
                 break;
             case R.id.change_language:
