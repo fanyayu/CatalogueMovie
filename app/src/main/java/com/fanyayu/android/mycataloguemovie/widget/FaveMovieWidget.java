@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.fanyayu.android.mycataloguemovie.R;
 
-/**
- * Implementation of App Widget functionality.
- */
 public class FaveMovieWidget extends AppWidgetProvider {
 
     public static final String TOAST_ACTION = "com.fanyayu.android.mycataloguemovie.TOAST_ACTION";
@@ -26,12 +23,10 @@ public class FaveMovieWidget extends AppWidgetProvider {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.fave_movie_widget);
-
         views.setRemoteAdapter(R.id.stack_view, intent);
         views.setEmptyView(R.id.stack_view, R.id.empty_view);
 
         Intent toastIntent = new Intent(context, FaveMovieWidget.class);
-
         toastIntent.setAction(FaveMovieWidget.TOAST_ACTION);
         toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
