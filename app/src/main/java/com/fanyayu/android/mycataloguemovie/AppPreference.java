@@ -14,10 +14,10 @@ public class AppPreference {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-   void setDaily(boolean dailyStatus){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_DAILY, dailyStatus);
-        editor.apply();
+    void setDaily(boolean dailyStatus){
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putBoolean(KEY_DAILY, dailyStatus);
+        edit.apply();
     }
 
     boolean isDaily(){
@@ -25,9 +25,9 @@ public class AppPreference {
     }
 
     void setRelease(boolean releaseStatus){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_RELEASE, releaseStatus);
-        editor.apply();
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putBoolean(KEY_RELEASE, releaseStatus);
+        edit.apply();
     }
 
     boolean isRelease(){

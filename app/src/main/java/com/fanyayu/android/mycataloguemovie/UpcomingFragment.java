@@ -12,10 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
-import com.fanyayu.android.mycataloguemovie.taskloader.MovieTaskLoader;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,8 @@ import butterknife.ButterKnife;
 public class UpcomingFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>> {
     @BindView(R.id.rv_movie_upcoming)
     RecyclerView rvUpcoming;
+    @BindView(R.id.upcoming_progressbar)
+    ProgressBar upcomingProg;
     MovieAdapter adapter;
     public static final String UPCOMING_URL = "UPCOMING_URL";
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -68,11 +70,13 @@ public class UpcomingFragment extends Fragment implements LoaderManager.LoaderCa
         if (args != null) {
             movieURL = args.getString(UPCOMING_URL);
         }
-        return new MovieTaskLoader(getContext(), movieURL);
+        upcomingProg.setVisibility(View.VISIBLE);
+        return new MovieTaskLoader(getContext(), movieURL, null);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<ArrayList<MovieItems>> loader, ArrayList<MovieItems> data) {
+        upcomingProg.setVisibility(View.GONE);
         adapter.setData(data);
     }
 

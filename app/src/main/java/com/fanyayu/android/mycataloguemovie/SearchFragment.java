@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
-import com.fanyayu.android.mycataloguemovie.taskloader.MyTaskLoader;
 
 import java.util.ArrayList;
 
@@ -26,32 +26,31 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>>{
+public class SearchFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>>, View.OnClickListener {
 
     @BindView(R.id.rv_movie_search) RecyclerView recyclerView;
     MovieAdapter adapter;
     @BindView(R.id.edt_Cari) EditText edtCari;
     @BindView(R.id.btn_Cari) Button btnCari;
-    static final String EXTRAS_MOVIE = "EXTRAS_MOVIE";
+    @BindView(R.id.search_Progress)
+    ProgressBar searchProg;
+    static final String MOVIE_TITLE = "MOVIE_TITLE";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ButterKnife.bind(this, view);
         adapter = new MovieAdapter(getContext());
         adapter.notifyDataSetChanged();
 
-        btnCari.setOnClickListener(myListener);
+        btnCari.setOnClickListener(this);
+        searchProg.setVisibility(View.GONE);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        String movieTitle = edtCari.getText().toString();
-        final Bundle bundle = new Bundle();
-        bundle.putString(EXTRAS_MOVIE, movieTitle);
-        getLoaderManager().initLoader(0, bundle, this);
         return view;
     }
 
@@ -59,33 +58,33 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
     public Loader<ArrayList<MovieItems>> onCreateLoader(int id, Bundle args) {
         String movieTitle = "";
         if (args!= null) {
-            movieTitle = args.getString(EXTRAS_MOVIE);
+            movieTitle = args.getString(MOVIE_TITLE);
         }
-        return new MyTaskLoader(getContext(), movieTitle);
+        searchProg.setVisibility(View.VISIBLE);
+        return new MovieTaskLoader(getContext(),null, movieTitle);
     }
 
     @Override
     public void onLoadFinished(Loader<ArrayList<MovieItems>> loader, ArrayList<MovieItems> data) {
+        searchProg.setVisibility(View.GONE);
         adapter.setData(data);
     }
 
     @Override
     public void onLoaderReset(Loader<ArrayList<MovieItems>> loader) {
-
         adapter.setData(null);
     }
 
-    View.OnClickListener myListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_Cari){
             String movieTitle = edtCari.getText().toString();
 
             if (TextUtils.isEmpty(movieTitle))return;
 
             Bundle bundle = new Bundle();
-            bundle.putString(EXTRAS_MOVIE,movieTitle);
+            bundle.putString(MOVIE_TITLE,movieTitle);
             getLoaderManager().restartLoader(0,bundle, SearchFragment.this);
         }
-    };
+    }
 }

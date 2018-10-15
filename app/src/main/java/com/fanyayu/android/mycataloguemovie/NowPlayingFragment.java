@@ -12,10 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
-import com.fanyayu.android.mycataloguemovie.taskloader.MovieTaskLoader;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,8 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
 
     @BindView(R.id.rv_movie_nowplay)
     RecyclerView rvNowPlay;
+    @BindView(R.id.data_progressbar)
+    ProgressBar dataProg;
     MovieAdapter adapter;
     public static final String NOW_PLAYING_URL = "NOW_PLAYING";
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -67,11 +69,13 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
         if (args!= null) {
             movieUrl = args.getString(NOW_PLAYING_URL);
         }
-        return new MovieTaskLoader(getContext(), movieUrl);
+        dataProg.setVisibility(View.VISIBLE);
+        return new MovieTaskLoader(getContext(), movieUrl, null);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<ArrayList<MovieItems>> loader, ArrayList<MovieItems> data) {
+        dataProg.setVisibility(View.GONE);
         adapter.setData(data);
     }
 

@@ -26,6 +26,14 @@
         android:layout_marginLeft="16dp"
         style="@style/AppTheme.Button"
         android:text="@string/Search"/>
+    <ProgressBar
+        android:id="@+id/search_Progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:indeterminate="true"
+        android:layout_gravity="center_horizontal"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_movie_search"
         android:layout_width="match_parent"

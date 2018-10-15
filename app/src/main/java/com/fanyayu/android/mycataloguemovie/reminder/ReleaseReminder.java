@@ -13,17 +13,15 @@ import android.widget.Toast;
 
 import com.fanyayu.android.mycataloguemovie.BuildConfig;
 import com.fanyayu.android.mycataloguemovie.MainActivity;
-import com.fanyayu.android.mycataloguemovie.MovieDetailFragment;
 import com.fanyayu.android.mycataloguemovie.R;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
-import com.fanyayu.android.mycataloguemovie.taskloader.MovieTaskLoader;
+import com.fanyayu.android.mycataloguemovie.MovieTaskLoader;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 public class ReleaseReminder extends BroadcastReceiver {
-    public static final String TYPE_ONE_TIME = "OneTimeAlarm";
     public static final String TYPE_REPEATING = "RepeatingAlarm";
     private final int NOTIF_ID_REPEATING = 102;
     private static final String CHANNEL_ID = "myCatalogueMovie";
@@ -44,18 +42,8 @@ public class ReleaseReminder extends BroadcastReceiver {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, context.getResources().getString(R.string.app_name), NotificationManager.IMPORTANCE_DEFAULT );
             notificationManager.createNotificationChannel(channel);
         }
-        String date = item.getReleaseDate();
-        String poster = item.getPosterPath();
-        String popularity = item.getMoviePopularity();
-        String language = item.getMovieLanguage();
 
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(MovieDetailFragment.EXTRA_NAME, title);
-        intent.putExtra(MovieDetailFragment.EXTRA_DATE, date);
-        intent.putExtra(MovieDetailFragment.EXTRA_DESC, overview);
-        intent.putExtra(MovieDetailFragment.EXTRA_IMG, poster);
-        intent.putExtra(MovieDetailFragment.EXTRA_LANG, language);
-        intent.putExtra(MovieDetailFragment.EXTRA_POP, popularity);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, notifId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder notification = new NotificationCompat
@@ -100,7 +88,8 @@ public class ReleaseReminder extends BroadcastReceiver {
 
     private void getReleasedToday(final Context context) {
         String url = "https://api.themoviedb.org/3/movie/upcoming?api_key="+API_KEY+"&language=en-US";
-        MovieTaskLoader movieTaskLoader = new MovieTaskLoader(context, url);
+        MovieTaskLoader movieTaskLoader = new MovieTaskLoader(context, url, null);
+        movieTaskLoader.startLoading();
         List<MovieItems> items = movieTaskLoader.loadInBackground();
         int index = new Random().nextInt(items.size());
 

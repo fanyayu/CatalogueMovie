@@ -48,6 +48,13 @@
                 android:resource="@xml/fave_movie_widget_info" />
         </receiver>
 
+        <receiver android:name=".reminder.DailyReminder"
+            android:enabled="true"
+            android:exported="false"/>
+
+        <receiver android:name=".reminder.ReleaseReminder"
+            android:enabled="true"
+            android:exported="false"/>
         <service
             android:name=".widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />

@@ -24,12 +24,10 @@ import static com.fanyayu.android.mycataloguemovie.db.DatabaseContract.CONTENT_U
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context mContext;
-    private int mAppWidgetId;
     private Cursor listFaveWidget;
 
     public StackRemoteViewsFactory(Context context, Intent intent){
         mContext = context;
-        mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
     @Override

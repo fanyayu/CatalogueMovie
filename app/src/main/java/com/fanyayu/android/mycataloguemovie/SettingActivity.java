@@ -68,7 +68,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 if (isDaily){
                     switchDaily.setEnabled(true);
                     appPref.setDaily(isDaily);
-                    mDailyReminder.setRepeatingAlarm(this, DailyReminder.TYPE_REPEATING, "11:00");
+                    mDailyReminder.setRepeatingAlarm(this, DailyReminder.TYPE_REPEATING, "07:00");
 
                 } else {
                     switchDaily.setChecked(false);
@@ -82,7 +82,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 if (isRelease){
                     switchRelease.setEnabled(true);
                     appPref.setRelease(isRelease);
-                    mReleaseReminder.setReleaseAlarm(this, ReleaseReminder.TYPE_REPEATING, "11:30");
+                    mReleaseReminder.setReleaseAlarm(this, ReleaseReminder.TYPE_REPEATING, "08:00");
 
                 } else {
                     switchRelease.setChecked(false);

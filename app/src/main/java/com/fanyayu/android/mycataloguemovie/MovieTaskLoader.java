@@ -1,9 +1,8 @@
-package com.fanyayu.android.mycataloguemovie.taskloader;
+package com.fanyayu.android.mycataloguemovie;
 
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.fanyayu.android.mycataloguemovie.BuildConfig;
 import com.fanyayu.android.mycataloguemovie.entity.MovieItems;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
@@ -15,25 +14,21 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MyTaskLoader extends AsyncTaskLoader<ArrayList<MovieItems>> {
+public class MovieTaskLoader extends AsyncTaskLoader<ArrayList<MovieItems>> {
 
-    private ArrayList<MovieItems> mData;
+    private ArrayList<MovieItems> mDataMovie;
     private boolean mHasResult = false;
-
-    private String mSearchTitle;
     private static final String API_KEY = BuildConfig.API_KEY;
+    private String mSearchMovieTitle;
 
-    public MyTaskLoader(final Context context, String movieTitle) {
+    private String mMovieUrl;
+
+
+    public MovieTaskLoader(final Context context, String movieUrl, String searchTitle) {
         super(context);
         onContentChanged();
-        this.mSearchTitle = movieTitle;
-    }
-
-    @Override
-    public void deliverResult(final ArrayList<MovieItems> data) {
-        mData = data;
-        mHasResult = true;
-        super.deliverResult(data);
+        this.mMovieUrl = movieUrl;
+        this.mSearchMovieTitle = searchTitle;
     }
 
     @Override
@@ -41,7 +36,7 @@ public class MyTaskLoader extends AsyncTaskLoader<ArrayList<MovieItems>> {
         if (takeContentChanged())
             forceLoad();
         else if (mHasResult)
-                deliverResult(mData);
+            deliverResult(mDataMovie);
     }
 
     @Override
@@ -49,21 +44,35 @@ public class MyTaskLoader extends AsyncTaskLoader<ArrayList<MovieItems>> {
         super.onReset();
         onStopLoading();
         if (mHasResult) {
-            onReleaseResource(mData);
-            mData = null;
+            onReleaseResource(mDataMovie);
+            mDataMovie = null;
             mHasResult = false;
         }
     }
 
-    protected void onReleaseResource(ArrayList<MovieItems> data) {
+    private void onReleaseResource(ArrayList<MovieItems> data) {
+    }
+
+    @Override
+    public void deliverResult(ArrayList<MovieItems> data) {
+        mDataMovie = data;
+        mHasResult = true;
+        super.deliverResult(data);
     }
 
     @Override
     public ArrayList<MovieItems> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
 
-        final ArrayList<MovieItems> movieItemses = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+mSearchTitle;
+        final ArrayList<MovieItems> movieItemss = new ArrayList<>();
+
+        String url = "";
+
+        if (mSearchMovieTitle == null) {
+            url = mMovieUrl;
+        } else {
+            url = "https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+mSearchMovieTitle;
+        }
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -82,18 +91,20 @@ public class MyTaskLoader extends AsyncTaskLoader<ArrayList<MovieItems>> {
                     for (int i = 0; i < results.length(); i++){
                         JSONObject movies = results.getJSONObject(i);
                         MovieItems movieItems = new MovieItems(movies);
-                        movieItemses.add(movieItems);
+                        movieItemss.add(movieItems);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+                }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
             }
         });
-        return movieItemses;
+        return movieItemss;
     }
+
+
 }

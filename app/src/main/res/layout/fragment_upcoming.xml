@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".UpcomingFragment">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/upcoming_progressbar"/>
+
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_movie_upcoming"
