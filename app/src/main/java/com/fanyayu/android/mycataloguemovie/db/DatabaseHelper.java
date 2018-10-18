@@ -1,7 +1,6 @@
 package com.fanyayu.android.mycataloguemovie.db;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.fanyayu.android.mycataloguemovie.db.DatabaseContract.FavColumns;
@@ -11,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static String DATABASE_NAME = "dbfavemovie";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_TABLE_FAV = String.format("CREATE TABLE %s"
-            + " (%s INTEGER PRIMARY KEY,"
+            + " (%s INT PRIMARY KEY,"
             + " %s TEXT NOT NULL,"
             + " %s TEXT NOT NULL,"
             + " %s TEXT NOT NULL,"

@@ -39,5 +39,6 @@
     <string name="remindertext">get released today!!! Click to see details</string>
     <string name="daily_reminder">Watch movie now!!</string>
     <string name="daily_text">Dont forget to check new movie today</string>
+    <string name="del_success">Deleted from favorite</string>
 
 </resources>

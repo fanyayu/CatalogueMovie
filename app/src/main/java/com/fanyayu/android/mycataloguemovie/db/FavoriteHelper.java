@@ -30,8 +30,8 @@ public class FavoriteHelper {
     }
 
     public Cursor queryByIdProvider(String id){
-        return database.query(DATABASE_TABLE, null, _ID + " = ?"
-                ,new String[]{id}
+        return database.query(DATABASE_TABLE, null, _ID + " = '" +id+"'"
+                ,null
                 ,null
                 ,null,
                 null,
@@ -59,4 +59,5 @@ public class FavoriteHelper {
     public int deleteProvider(String id){
         return database.delete(DATABASE_TABLE, _ID + " = ?", new String[]{id});
     }
+
 }

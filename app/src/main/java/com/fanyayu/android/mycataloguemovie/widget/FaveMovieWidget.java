@@ -22,6 +22,7 @@ public class FaveMovieWidget extends AppWidgetProvider {
 
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.fave_movie_widget);
         views.setRemoteAdapter(R.id.stack_view, intent);
         views.setEmptyView(R.id.stack_view, R.id.empty_view);
@@ -47,10 +48,12 @@ public class FaveMovieWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(TOAST_ACTION)) {
             int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-            Toast.makeText(context, "Touched view "+ viewIndex, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "clicked "+ viewIndex, Toast.LENGTH_SHORT).show();
         }
         super.onReceive(context, intent);
     }
 
 }
+
+
 

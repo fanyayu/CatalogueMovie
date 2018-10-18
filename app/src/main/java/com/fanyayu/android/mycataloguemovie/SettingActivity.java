@@ -32,31 +32,18 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
 
+        changeLang.setOnClickListener(this);
         switchDaily.setOnClickListener(this);
         switchRelease.setOnClickListener(this);
-        changeLang.setOnClickListener(this);
 
         appPref = new AppPreference(this);
-        mDailyReminder = new DailyReminder();
         mReleaseReminder = new ReleaseReminder();
-        getSupportActionBar().setTitle(R.string.setting);
+        mDailyReminder = new DailyReminder();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.setting);
         
-        setNotification();
-    }
-
-    private void setNotification() {
-        if (appPref.isDaily()){
-            switchDaily.setChecked(true);
-        } else {
-            switchDaily.setChecked(false);
-        }
-
-        if (appPref.isRelease()){
-            switchRelease.setChecked(true);
-        } else {
-            switchRelease.setChecked(false);
-        }
+        setNotifSwitch();
     }
 
     @Override
@@ -103,5 +90,19 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void setNotifSwitch() {
+        if (appPref.isDaily()){
+            switchDaily.setChecked(true);
+        } else {
+            switchDaily.setChecked(false);
+        }
+
+        if (appPref.isRelease()){
+            switchRelease.setChecked(true);
+        } else {
+            switchRelease.setChecked(false);
+        }
     }
 }

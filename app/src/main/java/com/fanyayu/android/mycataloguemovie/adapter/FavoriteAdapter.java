@@ -111,5 +111,4 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FaveVi
         }
         return new FavoriteItems(listFaves);
     }
-
 }

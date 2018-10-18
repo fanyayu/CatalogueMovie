@@ -20,4 +20,5 @@
     <string name="fav_movie">Favorite Movie</string>
     <string name="no_data">There is no data now</string>
     <string name="activate_daily_reminder">Activate daily reminder</string>
+    <string name="del_success">Deleted from favorite</string>
 </resources>

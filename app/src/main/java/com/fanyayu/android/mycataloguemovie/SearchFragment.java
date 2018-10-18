@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.fanyayu.android.mycataloguemovie.adapter.MovieAdapter;
@@ -26,12 +23,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>>, View.OnClickListener {
+public class SearchFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>> {
 
     @BindView(R.id.rv_movie_search) RecyclerView recyclerView;
     MovieAdapter adapter;
-    @BindView(R.id.edt_Cari) EditText edtCari;
-    @BindView(R.id.btn_Cari) Button btnCari;
+    @BindView(R.id.sv_movie)
+    android.support.v7.widget.SearchView svMovie;
     @BindView(R.id.search_Progress)
     ProgressBar searchProg;
     static final String MOVIE_TITLE = "MOVIE_TITLE";
@@ -45,12 +42,33 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
         adapter = new MovieAdapter(getContext());
         adapter.notifyDataSetChanged();
 
-        btnCari.setOnClickListener(this);
         searchProg.setVisibility(View.GONE);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        svMovie.setActivated(true);
+        svMovie.setIconified(false);
+        svMovie.onActionViewExpanded();
+        svMovie.clearFocus();
+        svMovie.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.length() >= 1) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(MOVIE_TITLE, newText);
+                    getLoaderManager().restartLoader(0,bundle, SearchFragment.this);
+                }
+                return false;
+            }
+        });
         return view;
     }
 
@@ -75,16 +93,5 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
         adapter.setData(null);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btn_Cari){
-            String movieTitle = edtCari.getText().toString();
 
-            if (TextUtils.isEmpty(movieTitle))return;
-
-            Bundle bundle = new Bundle();
-            bundle.putString(MOVIE_TITLE,movieTitle);
-            getLoaderManager().restartLoader(0,bundle, SearchFragment.this);
-        }
-    }
 }

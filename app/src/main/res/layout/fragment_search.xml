@@ -7,25 +7,12 @@
     tools:context=".SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/edt_Cari"
+    <android.support.v7.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"/>
-    <Button
-        android:id="@+id/btn_Cari"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="16dp"
-        style="@style/AppTheme.Button"
-        android:text="@string/Search"/>
+        style="@style/Widget.AppCompat.SearchView"
+        android:id="@+id/sv_movie"/>
+
     <ProgressBar
         android:id="@+id/search_Progress"
         android:layout_width="wrap_content"

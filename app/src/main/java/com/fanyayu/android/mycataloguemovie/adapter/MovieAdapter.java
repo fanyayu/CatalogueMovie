@@ -1,6 +1,8 @@
 package com.fanyayu.android.mycataloguemovie.adapter;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -23,6 +25,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.fanyayu.android.mycataloguemovie.db.DatabaseContract.FavColumns._ID;
+import static com.fanyayu.android.mycataloguemovie.db.DatabaseContract.TABLE_FAV;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -102,8 +107,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         });
 
     }
-
-
 
     @Override
     public int getItemViewType(int position) {

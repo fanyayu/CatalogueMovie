@@ -33,7 +33,11 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     @Override
     public void onCreate() {
         listFaveWidget = mContext.getContentResolver().query(
-                CONTENT_URI, null, null, null, null);
+                CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
     }
 
     @Override
@@ -56,7 +60,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public RemoteViews getViewAt(int i) {
-        FavoriteItems item = getItem(i);
+        FavoriteItems item = getFave(i);
         RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
 
         Bitmap bitmap = null;
@@ -83,6 +87,13 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         return remoteViews;
     }
 
+    private FavoriteItems getFave(int position){
+        if (!listFaveWidget.moveToPosition(position)) {
+            throw  new IllegalStateException("Position invalid");
+        }
+
+        return new FavoriteItems(listFaveWidget);
+    }
     @Override
     public RemoteViews getLoadingView() {
         return null;
@@ -103,11 +114,5 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         return false;
     }
 
-    private FavoriteItems getItem(int position){
-        if (!listFaveWidget.moveToPosition(position)) {
-            throw  new IllegalStateException("Position invalid");
-        }
 
-        return new FavoriteItems(listFaveWidget);
-    }
 }
